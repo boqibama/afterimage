@@ -625,10 +625,23 @@
     state.t0 = performance.now(); state.dur = LOOK_MS; setCount(10); beep(520, 0.12);
     state.raf = requestAnimationFrame(loop);
   }
+  // The countdown eye opens wide for the last 3 seconds; lift moves both lids apart, eased instead of snapping.
+  let cdLift = 0, cdLiftRaf = 0;
+  function setCdLift(target, instant) {
+    cancelAnimationFrame(cdLiftRaf);
+    const from = cdLift, t0 = performance.now(), dur = instant || reduceMotion() ? 0 : 280;
+    const step = now => {
+      const k = dur ? Math.min(1, (now - t0) / dur) : 1;
+      cdLift = from + (target - from) * (1 - Math.pow(1 - k, 3));
+      const d = `M10 65 Q100 ${-6 - cdLift} 190 65 Q100 ${136 + cdLift} 10 65 Z`;
+      ['cdEye', 'cdEyeFill', 'cdClipPath'].forEach(id => $(id).setAttribute('d', d));
+      if (k < 1) cdLiftRaf = requestAnimationFrame(step);
+    };
+    step(t0);
+  }
   function setCount(n) {
     const el = $('cdNum'); el.textContent = n; el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick');
-    const wide = n <= 3;
-    $('cdEye').setAttribute('d', `M10 65 Q100 ${wide ? -26 : -6} 190 65 Q100 ${wide ? 156 : 136} 10 65 Z`);
+    setCdLift(n <= 3 ? 20 : 0, n === 10);
     $('cdWrap').setAttribute('aria-label', `${n} seconds to memorize`);
     $('lookHint').textContent = n === 1 ? 'Don’t blink…' : n <= 3 && n > 0 ? 'Lock it in.' : '';
   }
