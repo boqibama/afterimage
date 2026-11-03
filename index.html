@@ -108,7 +108,13 @@
 <section class="screen look-screen" data-screen="look" id="scr-look" hidden>
   <button type="button" class="quit" data-act="home" aria-label="Quit to home">← AFTERIMAGE</button>
   <div class="cd" id="cdWrap" role="timer" aria-label="10 seconds to memorize">
-    <svg viewBox="0 0 200 130" class="wob" aria-hidden="true"><path id="cdEye" d="M10 65 Q100 -6 190 65 Q100 136 10 65 Z" fill="#FBF5EA" stroke="#17120E" stroke-width="5" stroke-linejoin="round"/><circle cx="100" cy="65" r="44" fill="none" stroke="#17120E" stroke-width="4.5"/></svg>
+    <svg viewBox="0 0 200 130" class="wob" aria-hidden="true">
+      <defs><clipPath id="cdClip"><path id="cdClipPath" d="M10 65 Q100 -6 190 65 Q100 136 10 65 Z"/></clipPath></defs>
+      <path id="cdEyeFill" d="M10 65 Q100 -6 190 65 Q100 136 10 65 Z" fill="#FBF5EA"/>
+      <!-- the iris tucks under the lids until the eye opens wide -->
+      <circle cx="100" cy="65" r="44" fill="none" stroke="#17120E" stroke-width="4.5" clip-path="url(#cdClip)"/>
+      <path id="cdEye" d="M10 65 Q100 -6 190 65 Q100 136 10 65 Z" fill="none" stroke="#17120E" stroke-width="5" stroke-linejoin="round"/>
+    </svg>
     <span class="hand" id="cdNum">10</span>
   </div>
   <h1 class="h-look hand">EYES OPEN.</h1>

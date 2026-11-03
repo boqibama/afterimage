@@ -118,8 +118,8 @@ button { font: inherit; color: inherit; }
 .cd { position: absolute; top: 22px; right: 40px; width: 200px; }
 .cd svg { width: 100%; height: auto; display: block; overflow: visible; }
 .cd span { position: absolute; left: 0; right: 0; top: 50%; transform: translateY(-52%); text-align: center; font-size: 66px; line-height: 1; }
-.cd span.tick { animation: num .5s cubic-bezier(.2, 1.6, .4, 1); }
-@keyframes num { 0% { transform: translateY(-52%) scale(1.5); opacity: .2; } 100% { transform: translateY(-52%) scale(1); opacity: 1; } }
+.cd span.tick { animation: num .4s cubic-bezier(.25, 1.3, .5, 1); }
+@keyframes num { 0% { transform: translateY(-52%) scale(1.18); opacity: .35; } 100% { transform: translateY(-52%) scale(1); opacity: 1; } }
 .h-look, .h-draw, .h-big { margin: 0; font-size: 68px; line-height: 1; transform: rotate(-3deg); text-align: center; }
 .h-draw { font-size: 64px; transform: rotate(2deg); }
 .caption { margin: 2px 0 0; font-size: 26px; text-align: center; transform: rotate(-1deg); }
