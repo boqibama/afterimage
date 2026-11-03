@@ -1,13 +1,16 @@
 **Afterimage**: don't blink or you'll miss it.
 
-A drawing memory game that works like an eye exam. You get 10 seconds to look at a drawing, then the eye blinks shut and you have a minute to redraw it from memory. Your score comes back as a vision rating, and 20/20 is the goal.
+A drawing memory game that works like an eye exam. You get 10 seconds to look at a little doodle (a fish in a top hat, say), then the eye blinks shut and you redraw it from memory. Your score comes back as a vision rating, and 20/20 is the goal.
 
 **[Play it here](https://boqibama.github.io/afterimage/)**
 
-There's a daily chart (same drawing for everyone, so you can keep a streak going), an endless mode, and a party mode where 2 to 4 people pass the mouse around and draw the same thing.
+Pick Easy, Normal or Hard. Easy is one character just standing there, and Hard is a whole little scene. There's one scored daily exam with the same doodle for everyone, plus endless and party modes (2 to 4 people pass the mouse around) that you can play as much as you want.
 
-Scoring compares your drawing to the original with some wiggle room, so lines that are close still count. After that you can see yours laid on top of the original, which is usually humbling.
+How the scoring works: every doodle is built from simple shapes (ovals, rectangles, triangles, lines, arcs and dots) on a 20 × 20 grid. The grader finds each part in your strokes and checks its shape (40%), size (25%), position (20%) and which way it's turned (15%). The big, recognizable parts count the most, and random extra ink costs you points. It's all geometry, no pixel matching and no AI. After each exam there's a full report showing what it found and where every point went.
 
-The whole thing is one HTML file (React + canvas), so you can also just download index.html and open it.
+The code:
+- `js/doodles.js` makes the doodles, a new one every day
+- `js/grader.js` scores your drawing against it
+- `js/game.js` is the game itself, and `style.css` is the look
 
-Still want to add: more drawings, and scoring that can tell *what* you drew so you get partial credit for the right object even if the lines are off.
+There's no build step and nothing to install. Just open index.html, or play it at the link above.
